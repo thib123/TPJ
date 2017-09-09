@@ -1,0 +1,34 @@
+<?php
+class Personnage
+{
+  private $_force;
+  private $_experience;
+  private $_degats;
+        
+  public function frapper(Personnage $persoAFrapper)
+  {
+    $persoAFrapper->_degats += $this->_force;
+  }
+        
+  public function gagnerExperience()
+  {
+    $this->_experience++;
+  }
+        
+  public function degats()
+  {
+    return $this->_degats;
+  }
+        
+  public function force()
+  {
+    return $this->_force;
+  }
+        
+  public function experience()
+  {
+    return $this->_experience;
+  }
+}
+
+?> 
