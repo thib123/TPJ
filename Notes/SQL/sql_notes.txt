@@ -1,0 +1,65 @@
+Sql notes :
+
+
+exemples alias query:
+
+SELECT email, email AS motdepasse FROM customers;
+
+SELECT customer, CONCAT(adress, '- ', adress2 , '- ', city , '- ', state, ': ', zipcode) FROM customer_addresses;
+
+=> SELECT customer, CONCAT(adress, '- ', adress2 , '- ', city , '- ', state, ': ', zipcode) AS complete_adress FROM customer_addresses;
+
+
+alias tables :
+
+SELECT * FROM customers_adresses AS addresses;
+
+SELECT pc.name AS categoryName, p.name AS productName FROM product_categories AS pc INNER JOIN products AS p ON pc.id = p.category;
+
+JOIN :
+
+1 : 
+SELECT product_categories.name, products.name FROM product_categories INNER JOIN products ON product_categories.id = products.category;
+
+2 : 
+SELECT product_categories.name, products.name FROM product_categories LEFT JOIN products ON product_categories.id = products.category; 
+
+3 : 
+SELECT product_categories.name, products.name FROM product_categories RIGHT JOIN products ON product_categories.id = products.category;
+
+Functions :
+
+AVG=moyenne
+
+SELECT ACG(price) AS average_price FROM products;
+
+SELECT name, price FROM products WHERE price > (SELECT ACG(price) AS average_price FROM products);
+
+SELECT COUNT(name) AS count_products FROM products;
+
+SELECT COUNT(DISTINCT price) AS count_products FROM products;
+
+MAX : select le max (valeur) d'un champ, inversement pour MIN.
+
+
+
+créer des catégories :
+
+=> GROUP BY
+
+ex : SELECT category, AVG(price) AS average_price FROM products GROUP BY category;
+
+ex2 : 
+SELECT pc.name , AVG(p.price) AS average_price 
+FROM products AS p INNER JOIN product_categories AS pc
+ON p.catgory = pc.id
+GROUP BY pc.name;
+
+
+Le HAVING :
+
+SELECT pc.name , AVG(p.price) AS average_price 
+FROM products AS p INNER JOIN product_categories AS pc
+ON p.catgory = pc.id
+GROUP BY pc.name
+HAVING average_price > 100;;

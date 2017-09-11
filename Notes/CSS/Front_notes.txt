@@ -1,0 +1,237 @@
+Front
+
+display: flex => conteneur flexible
+flex item => genre de bloc
+
+code :
+<style>
+.flex-container
+{
+	code style (padding etc)
+}
+.flex-item
+{
+	code style
+}
+</style>
+<body>
+<ul class="flex-container">
+<liste de LI>
+ex:<li class="flex-item1"></li>
+</ul>
+</body>
+
+flex-direction => placement des "blocs"
+ex: flex-direction : row (du plus petit item au plus grand)
+ 	flex-direction : row-reverse
+ 	flex-direction : colum-reverse
+
+ flex-wrap => si un élémént ne rentre pas dans la page => est placé en dessous
+ flex-flow: colum => listé en colonnes
+
+ justify-content => placement des items
+
+ // box sizing
+éviter les déformations de blocs avec les navigateurs
+
+ exemple :
+.box {
+	box-sizing: border-box;
+}
+
+pour appliquer à tous les élements :
+<style>
+ *{
+	box-sizing: border-box;
+}
+
+// reset un body
+
+=> feuille de style reset sur le net 
+=> règles css appliquables sur tous les navigateurs
+ex de lien pour call fichier => <link rel="stylesheet" href="lib/chemin">
+
+ajouter de l'ombre: 
+
+box-shadow
+générateur dispo sur le net (cssmatic (site))
+
+gérer l'opacité :
+
+> opacity
+
+arrondir les angles :
+Faire des cercles
+> border-raddius
+on peut mettre soit un paramètre soit faire avec les 4 paramètres pour chaque angle.
+
+Eviter les dépassements :
+
+> overflow: hidden
+
+les sélecteurs avancés:
+
+symbole > cherche (par exemple) un <p> enfant d'une section. 
+ex : section > p {
+	color:blue;
+}
+
+Voir sélecteurs sur w3schools
+
+les pseudos éléments :
+
+insérer un pseudo élément :
+ex :
+<style>
+blockquote(nom au pif)::before (gauche // after pour la droite){
+	content:'blabla';
+	color:blue;
+}
+
+les pseudos classes :
+
+le :hover => appliquer une classe sur un élément au survol de la souris sur l'élément
+
+:focus => appliquer à un champ de saisie
+
+:active => maintenir le clic sur un élément
+
+ex :
+    <!DOCTYPE html>
+    <html>
+    <head>
+     <meta charset="utf-8">
+     <title>Pseudo Elements</title>
+     <link rel="stylesheet" href="stylebase.css">
+     <style type="text/css">
+     .survol:hover{
+     text-transform: uppercase;
+     background-color: red;
+     color: white;
+     }
+     .selection:focus{
+     text-transform: uppercase;
+     border: 5px solid green;
+     }
+     .activation:active{
+     font-weight: 900;
+     color: green;
+     }
+     p:first-child{
+     color: red;
+     }
+     </style>
+    </head>
+    <body>
+     <div class="card survol">
+     <h1> :hover </h1>
+     <p>
+     Le CSS s'active au survol
+     </p>
+     </div>
+     <div class="card"> 
+     <h1> :focus </h1>
+     <p>
+     <a class="selection" href="http://google.com">S'active quand on le séléctionne ou qu'on y passe avec la touche tab. Comme un input par exemple ou un lien</a> 
+     <br/>
+     <input class="selection" type="text"/>
+     </p>
+     </div>
+     <div class="card"> 
+     <h1> :active </h1>
+     <p>
+     <a class="activation" href="#">S'active quand on clic dessus. Pour un lien ou un bouton </a> 
+     <button class="activation">Valider</button>
+     </p>
+     </div>
+     <div class="card">
+     <h1>:first-child</h1>
+     <!-- c'est le premier P mais pas le premier fils -> h1 -->
+     <p>
+     Permet de séléction le premier fils
+     </p>
+     <h3>Exemple</h3>
+     <section>
+     <p> premier paragraphe...</p>
+     <p>Lorem ipsum...</p>
+     </section>
+     <section>
+     <h2>test</h2>
+     <p> premier paragraphe...</p>
+     <p>Lorem ipsum...</p>
+     </section>
+     </div>
+    </body>
+    </html>
+
+
+les transformations
+
+
+    propriété : transform
+    Jouer sur l'échelle d'une image => prop : scale(3params)
+    +fonction : rotate (rotation sur l'img)
+    fonction : skew (image biaisé de manière horizontage ou vertical)
+
+les transitions
+
+    transition-duration
+    transition-delay
+
+    => changement sur une img (opacité par ex)
+    autre: transition: background-color 2s, height 1s;
+
+    voir site cubic bezier pour propriété cubic besier.
+
+
+
+Les animations
+
+déclarer une animation :
+@keyframes animationDuFond(osef)
+{
+	front{
+	background-color: red;
+	}
+	to{
+	background-color: blue;
+	}
+}
+
+décaler une animation:
+
+animation-duration: 2s;
+animation-delay: 1s;
+animation-iteration-count: 3;
+animation-direction: alternate; // permet de changer de quel point on part sur les % (ci dessous)
+animation-timing-function: linear; // anim linéaire
+position: absolute;
+top:0;
+left:0; // le tout fait que l'anim se fera 3 fois et sur les 4 angles de la page
+
+autre ex :
+
+@keyframes monAnimationTaille{
+	
+	0%{
+	width: 150px;
+	}
+	50%{
+	width: 50px;
+	}
+	90%{
+	width: 350px;
+	}
+	100%{
+	width: 450px;
+	}
+}
+
+ne pas oublié de déclarer l'animation juste après le style :
+ex:
+<style>
+animation-name: monAnimationTaille
+
+Préfixes pour les moteurs de recherches 
+ex : -moz pour mozilla
+-webkit pour chrome etc

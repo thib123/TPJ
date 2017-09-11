@@ -1,0 +1,140 @@
+// notes C
+
+%d = nombre
+%s = un string
+
+exemple :
+printf("there are %d bottles standing on the %s\n", 20, wall");
+
+20 => %d
+wall => %s
+
+// exemple hello world 
+
+#include <stdio.h>
+
+int main(int argc, char **argv) {
+    int i;
+    for (i = 0; i < argc; i++) {
+        printf("hello world ! argc=%d arg %d is %s\n", argc, i, argv[i]);
+    }
+    return 0;
+}
+
+// 
+
+int = intégrer fonction
+double = le var en php (déclare un nom dans une fonction :
+
+exemple :
+
+#include <stdio.h>
+
+int main(int argc, char **argv) {
+
+    double pettycash;
+    double grandtotal;
+    
+    grandtotal = 500.50;
+    pettycash = 10.5;
+    printf("pettycash=%.2f\n", pettycash);
+    pettycash = 100.25;
+    printf("pettycash=%.2f\n", pettycash);
+    printf("grandtotal=%.2f\n", grandtotal);
+    return 0;
+}
+
+%.2f = un float (décimal)
+
+utiliser un #define :
+
+en C :
+
+    #define PI 3.141593
+
+pas de "; ou de = sinon error"
+
+%.10f = + de précision sur un décimal
+
+on peut déclarer aussi avec :
+
+const double TAXERATE_CONST = 0.175;
+au lieu (ou en plus) de :
+#define TAXERATE_CONST 0.175
+
+== => tester une condition (avec un if par exemple)
+ ex : age = 70
+        if {(age == 45)
+        bonus = 1000;
+        }
+        else{
+        bonus = 500;
+        }
+
+signes :
+== => equals
+!= => not equals
+> => plus grand
+< => moins grand
+<= => moins grand ou égal
+>= => plus grand ou égal
+
+//
+
+++ => +1
+
+-- => -1
+
+exemples :
+num1 = 10;
+num2 = num1++; // => num2 = 10
+
+num1 = 10;
+num2 = ++num1; // => num2 = 11
+
+gets => appelle en gros une variable 
+exemple :
+
+int main(int argc, char **argv)
+{
+    char agestrings[10];
+    int age;
+    int bonus;
+}
+printf("enter your age : ");
+gets(agestrings);
+age = atoi(agestrings);
+if (age == 0)
+{
+    printf("invalid command")
+} else {
+    if (age > 45)
+    {
+    bonus= 10000;
+    } else {
+        bonus = 500;
+    }
+    printf("your age is %d, so your bonus is %d\n, age, bonus")
+}
+
+pour palier aux erreurs de gets (ex: si on entre dans le prog 5 lettres sur une variable ou seul 3 lettres sont requises, cela fait une erreur, donc on passe par fgets pour éviter les erreurs)
+ex: fgets(firstname, 5, stdin); (stdin est un standard?)
+=> utiliser en plus flush_input
+ voir :
+
+char firstane[5];
+char lastname[5];
+ printf("enter your first name");
+ fgets(firstname, 5, stdin);
+ printf(enter your last name);
+ // fflush(stdin); // clean les data en trop, a utiliser avec ou sans flush_input
+ flush_input();
+ fgets(lastname, 5, stdin);
+ flush_input();
+ printf("hello, %s, %s\n, firstname, lastname");
+
+ code du flush défini plus haut dans le code normalement :
+ void flush_input() {
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
+ }

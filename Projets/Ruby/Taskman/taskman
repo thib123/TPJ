@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+require 'bundler'
+
+Bundler.require
+
+TM_PATH = File.expand_path(File.join(__FILE__, "..") )
+
+require "#{TM_PATH}/lib/ext"
+require "#{TM_PATH}/lib/task"
+require "#{TM_PATH}/lib/command"
+require "#{TM_PATH}/lib/error"
+
+
+# Notre code commence ici
+Task.load "#{TM_PATH}/conf/tasks.json"
+
+Command.define do
+
+	args ":contenu (options...)"
+	desc "Crée une nouvelle tache."
+	action :add do |arguments|
+		Task.add(arguments)
+	end
+
+	args ""
+	desc "Supprime une tache"
+	task_action :del do |task, arguments|
+		Task.delete task.id
+	end
+
+	args ":filtres"
+	desc "Liste les taches"
+	action :list do |arguments|
+		filters = arguments.inject({}) do |h, x|
+			k,v = x.split(":")
+
+			if v.nil?
+				h[:content] = k
+			else
+				h[k.to_sym] = v
+			end
+
+			h
+		end
+
+		Task.display filters
+	end
+
+	args ""
+	desc "Supprime toute les taches"
+	action :clear do |arguments|
+		Task.clear
+	end
+end
+
+#Command::Action.new('add', ':contenu (options...)', 'Crée une nouvelle tache.') do |arguments|
+#	Task.add(arguments)
+#end.register!
+
+#Command::TaskAction.new('del', '', 'Supprime une tache') do |task, args|
+#	Task.delete task.id
+#end.register!
+
+#Command.register 'del', ':id', 'Supprime une tache' do |args|
+#	Task.delete args.shift.to_i
+#end
+#
+#Command.register 'mod', ':id (options...)', 'Modifie une tache' do |args|
+#	puts "TODO"
+#end
+#
+#Command.register 'list', ':filtre', 'Liste les taches' do |args|
+#	Task.display
+#end
+
+Command.launch!
+
+#parser_commande(command)
+Task.save "#{TM_PATH}/conf/tasks.json"
