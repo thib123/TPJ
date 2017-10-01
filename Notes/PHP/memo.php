@@ -321,5 +321,4 @@ $sql->execute(array($var1,$var2));
 ?>
 
 
-// php objects
 
