@@ -1,0 +1,7 @@
+name = Block Exemple Twitter
+description = Provides a text for twitter in the footer.
+core = 7.x
+package = Block
+files[] = block_exemple.module
+files[] = block_exemple_form_settings.inc
+configure = admin/config/block_exemple/twitter

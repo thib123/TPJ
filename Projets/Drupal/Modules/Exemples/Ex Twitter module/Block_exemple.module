@@ -1,0 +1,58 @@
+<?php
+
+  /**
+   * @file
+   *
+   * Kara social links.
+   *
+   * This module is intend to place a custom social links associated with the social icons.
+   */
+  function block_exemple_help($path, $arg) {
+
+    switch ($path) {
+          case 'admin/help#block_exemple':
+            $output = '';
+            $output .= t("<p>This module is intend to replace the twitter text in the footer </p>");
+        return $output;
+    }
+  }
+
+  /**
+   * Implements hook_menu().
+   */
+  function block_exemple_menu() {
+    $items= array();
+    $items['admin/config/block_exemple'] = array(
+      'title' => 'block_exemple administration',
+      'description' => 'Adjust the social links on page',
+      'position' => 'right',
+      'weight' => -5,
+      'access arguments' => array('administer site configuration'),
+      'file path' => drupal_get_path('module', 'system'),
+    );
+    $items['admin/config/block_exemple/twitter'] = array(
+      'title' => 'block_exemple social links',
+      'description' => 'Adjust footer social links',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('block_exemple_form_settings'),
+      'access arguments' => array('administer site configuration'),
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'block_exemple_form_settings.inc',
+    );
+
+    return $items;
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK().
+   */
+  function block_exemple_preprocess_page(&$variables) {
+    if($variables):
+      $path = drupal_get_path('module', 'block_exemple');
+      require_once $path .'/block_exemple_form_settings.inc';
+//Pass the $variables to .tpl
+      $variables['block_exemple_footer_url'] = _block_exemple_default_twitter_url_value();
+      $variables['block_exemple_footer_text'] = _block_exemple_default_twitter_text_value();
+      endif;
+  }
+

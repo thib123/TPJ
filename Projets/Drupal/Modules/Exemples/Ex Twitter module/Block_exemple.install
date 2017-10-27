@@ -1,0 +1,57 @@
+<?php
+  /**
+   * @file
+   * Databases table for block_exemple
+   */
+
+  /**
+   * Implements hook_schema().
+   */
+  function block_exemple_schema() {
+    $schema['block_exemple'] = array(
+      'description' => 'A table to store data for block_exemple links',
+      'fields' => array(
+        'eid' => array(
+          'type' => 'int',
+          'not null' => TRUE,
+          'default' => 1,
+          'description' => "block_exemple twitter id",
+        ),
+        'tweeter_url' => array(
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => FALSE,
+          'default' => '',
+          'description' => 'Tweeter page URL.',
+        ),
+        'tweeter_text' => array(
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => FALSE,
+          'default' => '',
+          'description' => 'Tweeter page text.',
+        ),
+      ),
+    );
+    return $schema;
+  }
+
+  /**
+   * Implements hook_install().
+   */
+  function block_exemple_install() {
+    // Insert the unique uid for current user
+    db_insert('block_exemple')
+      ->fields(array(
+        'tweeter_text' => t('Follow us'),
+      ))
+      ->execute();
+  }
+
+  /**
+   * Implements hook_uninstall().
+   */
+  function block_exemple_uninstall() {
+    variable_del('block_exemple');
+    watchdog('block_exemple', 'block_exemple twitter variable deleted successfully');
+  }
