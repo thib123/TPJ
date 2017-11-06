@@ -1,0 +1,5 @@
+name: Hello World
+core: 8.x
+type: module
+package: Drupal
+description:  module test pour Drupal 8.
