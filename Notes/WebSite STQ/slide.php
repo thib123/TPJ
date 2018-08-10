@@ -108,9 +108,9 @@ img {
           <img src="" style="width:100%">
         </div>
           <div class="col-sm-2">
-                <h2 class="title-slider-homepage"></h2>
-                <p class="text-slider-homepage"></p>
-                <a class="know-more know-more-on-slider" href=""></a>
+                <h2 class=""></h2>
+                <p class=""></p>
+                <a class="" href=""></a>
           </div>
       </div>
     </div>
@@ -122,9 +122,9 @@ img {
             <img src="" style="width:100%">
           </div>
           <div class="col-sm-3">
-            <h2 class="title-slider-homepage"></h2>
-            <p class="text-slider-homepage"></p>
-            <a class="know-more know-more-on-slider"  href=""></a>
+            <h2 class=""></h2>
+            <p class=""></p>
+            <a class=""  href=""></a>
           </div>
     </div>
   </div>
